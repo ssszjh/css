@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background-color: black;
+        }
+        
+        a {
+            position: relative;
+            width: 200px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 30px;
+            border: 0;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 20px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            outline: none;
+            overflow: hidden;
+            color: white;
+            background: linear-gradient(90deg, #0162c8, #55e7fc);
+        }
+        
+        a:nth-child(2) {
+            background: linear-gradient(90deg, #755bea, #ff72c0);
+        }
+        
+        span {
+            position: absolute;
+            background-color: white;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ani 1s linear infinite;
+        }
+        
+        @keyframes ani {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: .6;
+            }
+            100% {
+                height: 500px;
+                width: 500px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a>button1</a>
+    <a>button2</a>
+    <script>
+        var button = document.querySelectorAll("a");
+        button.forEach(btn => {
+            btn.addEventListener("click", function(e) {
+
+                var x = e.clientX - e.target.offsetLeft;
+                var y = e.clientY - e.target.offsetTop;
+                var span = document.createElement("span");
+                // console.log(x, y);
+                console.log(e.clientX, e.target.offsetLeft);
+                span.style.left = x + "px";
+                span.style.top = y + "px";
+                this.appendChild(span);
+                setTimeout(() => {
+                    span.remove();
+                }, 1000)
+            })
+        })
+    </script>
+</body>
+
+</html>
